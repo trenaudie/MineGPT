@@ -597,3 +597,39 @@ SOURCES: ./temp/sample5.txt
 =======
 >>>>>>> refs/remotes/origin/main
 >>>>>>> 2b01e7f18e2b36f8d389dc4947eb9a5cd162707b
+2023-04-14 13:03:29,040 - INFO - Current user:
+2023-04-14 13:03:29,040 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
+2023-04-14 13:03:29,040 - INFO - current region
+2023-04-14 13:03:29,040 - INFO - None
+2023-04-14 13:03:29,373 - INFO - mineGPTgroup
+2023-04-14 13:03:29,491 - INFO - group policies
+2023-04-14 13:03:29,491 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': '812db44c-df6a-4e85-b699-bf2e8d0d1ba1', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': '812db44c-df6a-4e85-b699-bf2e8d0d1ba1', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Fri, 14 Apr 2023 11:03:28 GMT'}, 'RetryAttempts': 0}}
+2023-04-14 13:03:29,491 - INFO - ECUE61.1corrige-exo-1.pdf
+2023-04-14 13:03:29,688 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-14 13:05:03,781 - INFO - Current user:
+2023-04-14 13:05:03,781 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
+2023-04-14 13:05:03,782 - INFO - current region
+2023-04-14 13:05:03,782 - INFO - None
+2023-04-14 13:05:04,120 - INFO - mineGPTgroup
+2023-04-14 13:05:04,234 - INFO - group policies
+2023-04-14 13:05:04,234 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': '3b9be7fc-043c-4b4b-8f27-e467b3f3b567', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': '3b9be7fc-043c-4b4b-8f27-e467b3f3b567', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Fri, 14 Apr 2023 11:05:02 GMT'}, 'RetryAttempts': 0}}
+2023-04-14 13:05:04,234 - INFO - ECUE61.1corrige-exo-1.pdf
+2023-04-14 13:05:04,355 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-14 13:05:53,068 - INFO - Current user:
+2023-04-14 13:05:53,068 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
+2023-04-14 13:05:53,068 - INFO - current region
+2023-04-14 13:05:53,068 - INFO - None
+2023-04-14 13:05:54,952 - INFO - mineGPTgroup
+2023-04-14 13:05:56,891 - INFO - group policies
+2023-04-14 13:05:56,891 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': '6c0069f5-28ba-4743-940d-bd321b467ab3', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': '6c0069f5-28ba-4743-940d-bd321b467ab3', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Fri, 14 Apr 2023 11:05:54 GMT'}, 'RetryAttempts': 0}}
+2023-04-14 13:05:56,891 - INFO - ECUE61.1corrige-exo-1.pdf
+2023-04-14 13:05:57,006 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-14 13:08:12,561 - INFO - Current user:
+2023-04-14 13:08:12,561 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
+2023-04-14 13:08:12,561 - INFO - current region
+2023-04-14 13:08:12,561 - INFO - None
+2023-04-14 13:08:12,925 - INFO - mineGPTgroup
+2023-04-14 13:08:13,053 - INFO - group policies
+2023-04-14 13:08:13,053 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': 'b9b27b09-2ff3-4b6a-a56f-67fb372e1422', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': 'b9b27b09-2ff3-4b6a-a56f-67fb372e1422', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Fri, 14 Apr 2023 11:08:11 GMT'}, 'RetryAttempts': 0}}
+2023-04-14 13:08:13,083 - INFO - Cours 2 - Paolo STRINGARI -fludes réels TPI -3.pdf
+2023-04-14 13:08:13,195 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT

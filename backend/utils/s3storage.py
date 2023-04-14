@@ -9,7 +9,8 @@ sys.path.append('/Users/tanguyrenaudie/Documents/TanguyML/MineGPT/backend')
 
 
 # Create a new session using the access key and secret access key of the new user
-session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID, aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY)
+session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID,
+                        aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY)
 bucket_name = 'minefiles'
 
 
@@ -27,7 +28,7 @@ def delete_file_from_s3(file_key, bucket_name, session):
     return True
 
 
-def upload_file(file_name, bucket, session: boto3.Session, object_name=None):
+def upload_file(file_path, file_name, bucket, session: boto3.Session, object_name=None):
     """Upload a file to an S3 bucket
 
     :param file_name: File to upload
@@ -45,7 +46,7 @@ def upload_file(file_name, bucket, session: boto3.Session, object_name=None):
     try:
         # print working directory
         print(os.getcwd())
-        response = s3_client.upload_file(file_name, bucket, object_name)
+        response = s3_client.upload_file(file_path, bucket, object_name)
     except ClientError as e:
         logger.error(e)
         return False
@@ -53,10 +54,17 @@ def upload_file(file_name, bucket, session: boto3.Session, object_name=None):
 
 
 def upload_Admin(folder, bucket_name, session):
-    for filename in os.listdir(folder):
-        item_path = os.path.join(folder, filename)
-        if os.path.isfile(item_path):
-            upload_file(folder + '/' + filename, bucket_name, session)
+    for root, dirs, files in os.walk(folder):
+        for filename in files:
+            item_path = os.path.join(root, filename)
+            if os.path.isfile(item_path):
+                # Get the relative path from the root folder
+                rel_path = os.path.relpath(item_path, folder)
+                # Replace path separators with underscores
+                new_filename = rel_path.replace(os.path.sep, '_')
+                print(filename)
+                # Upload the file
+                upload_file(item_path, new_filename, bucket_name, session)
 
 
 if __name__ == "__main__":
@@ -102,5 +110,5 @@ if __name__ == "__main__":
         )
         print("group policies ", response)
 
-        upload_Admin('backend/database', bucket_name, session)
+        upload_Admin('backend/database/1A', bucket_name, session)
         delete_file_from_s3('Probabilité II.pdf', bucket_name, session)
