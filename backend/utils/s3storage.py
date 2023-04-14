@@ -5,7 +5,6 @@ from botocore.exceptions import ClientError
 import os
 from logger import logger
 import sys
-sys.path.append('/Users/tanguyrenaudie/Documents/TanguyML/MineGPT/backend')
 
 
 # Create a new session using the access key and secret access key of the new user

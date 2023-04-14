@@ -243,7 +243,6 @@ def login():
         uploaded_documents = DocSource.query.filter_by(user_id=user.id).all()
         filenames = [doc.to_dict() for doc in uploaded_documents]
 
-        print(access_token)
         # session id is fixed to user_id, must change later
         return jsonify(status='authenticated', access_token=access_token, uploaded_docs=filenames), 200
     return jsonify(status='incorrect authentification')
@@ -260,6 +259,8 @@ def logout():
 @app.route('/upload', methods=['POST'])
 @jwt_required()
 def upload_file():
+    # metadata = {'source':filename, 'user_id':user_id, 'file_id':file_id}
+
     print(f"inside upload_file received request {request}")
     uploaded_file = request.files['document']
     file_id = request.form['file_id']
@@ -283,6 +284,7 @@ def upload_file():
             logger.info(
                 f"uploading file_name_only {filename_only} with id {file_id} for user jwt= {user_id} ")
 
+
             save_file_to_Pinecone_metadata(
                 filepath, file_id, user_id, vectorstore)
             os.remove(filepath)
@@ -299,6 +301,55 @@ def upload_file():
         return 'No file was uploaded.', 400
 
 
+@app.route('/upload2', methods=['POST'])
+@jwt_required()
+def upload_file2():
+    try:
+        uploaded_file = request.files['document']
+        file_id = request.form['file_id']
+        user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
+        
+        if not user_id:
+            raise ValueError('Access token is missing or invalid')
+        
+        if not uploaded_file:
+            raise ValueError('No file was uploaded')
+
+        logger.info(
+            f"uploading file {uploaded_file.filename} with id {file_id} for user {user_id} ")
+
+        with redirect_stdout_to_logger(logger):
+            # add file to Pinecone
+            filepath = save_file_to_temp(uploaded_file)
+            filename_only = os.path.basename(filepath)
+
+            # Construct metadata dictionary
+            metadata = {'source': filename_only, 'user_id': user_id, 'file_id': file_id}
+
+            # Save file to Pinecone with metadata
+            save_file_to_Pinecone_metadata(filepath, metadata, vectorstore)
+            os.remove(filepath)
+
+            # add file to docsource database
+            description = 'File uploaded by user'  # might need to change
+            docsource = DocSource(user_id=user_id, description=description,
+                                  filename=filename_only)
+            db.session.add(docsource)
+            db.session.commit()
+
+            return jsonify('File uploaded and saved to the database.', 200)
+
+    except ValueError as e:
+        if str(e) == 'Access token is missing or invalid':
+            return jsonify({'message': 'Access token is missing or invalid'}), 401
+        elif str(e) == 'No file was uploaded':
+            return jsonify({'message': 'No file was uploaded'}), 400
+        else:
+            raise(str(e))
+            return jsonify({'message': 'An unknown error occurred'}), 500
+
+
+
 @app.route('/download/<path:filename>', methods=['GET'])
 @jwt_required()
 def download_file(filename):
@@ -307,7 +358,6 @@ def download_file(filename):
     auth_header = request.headers.get('Authorization')
     if auth_header and auth_header.startswith('Bearer '):
         user_id = get_jwt_identity()
-    print(auth_header)
     if not user_id:
         return 'Session ID is missing or incorrect.', 400
 
@@ -372,8 +422,24 @@ def delete_vector():
     #user id 
     #file id 
 
+with app.app_context():
+    db.create_all()
+    print(f"app.py cwd {os.getcwd()}")
+    app_module_dir = os.path.dirname(os.path.abspath(__file__))
+    print(f"app.py module directory: {app_module_dir}")
+    print("app.py resolved database path:", db.engine.url.database)
+    print("inside app py, os.get_cwd()", os.getcwd())
+
 if __name__ == '__main__':
+
     with app.app_context():
-        db.create_all()
+        print("app.py SQLALCHEMY_DATABASE_URI:", app.config['SQLALCHEMY_DATABASE_URI'])
+        print(User.query.all())
 
     app.run(debug=True, port=5000)
+
+
+
+
+
+#does changing user name 

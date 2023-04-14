@@ -91,11 +91,19 @@ def save_file_to_Pinecone(filepath:str, vectorstore:Pinecone):
 
 
     
-def save_file_to_Pinecone_metadata(filepath:str, file_id:str,  user_id : str, vectorstore:Pinecone):
+def save_file_to_Pinecone_metadata(filepath:str, metadata:str, vectorstore:Pinecone):
     """Reads one file from the temp directory (pdf and .txt files supported) then splits and saves to Pinecone"""
 
+
+    if not all(key in metadata for key in ['user_id', 'file_id', 'source']):
+        raise ValueError(f"Invalid metadata: {metadata}. Must contain user_id, file_id, source")
+
+    user_id = metadata.get('user_id')
+    file_id = metadata.get('file_id')
+    filename_only = metadata.get('filename_only')
+
+
     filename, file_extension = os.path.splitext(filepath)
-    filename.replace("\\temp", "")
     if file_extension.lower() == '.pdf':
         pdf_reader = PyPDF2.PdfReader(filepath)
         content = ""
@@ -111,15 +119,13 @@ def save_file_to_Pinecone_metadata(filepath:str, file_id:str,  user_id : str, ve
 
     #write from filepath, content to Pinecone
     chunksize = 512 #important parameter
-    metadata = {'source':filename, 'user_id':user_id, 'file_id':file_id}
-    document_whole = {"page_content":content, "metadata":metadata}
     source_chunks = []
 
     splitter = CharacterTextSplitter(separator=" ", chunk_size=chunksize, chunk_overlap=0)
-    for i,chunk in enumerate(splitter.split_text(document_whole.get("page_content"))):
+    for i,chunk in enumerate(splitter.split_text(content)):
         chunkid = file_id + "_" + str(i)
         embedded_chunk = vectorstore._embedding_function(chunk)
-        metadata_chunk =  document_whole.get('metadata').copy() 
+        metadata_chunk = metadata.copy() 
         metadata_chunk['text'] = chunk #adding text to metadata
         newdoc = (chunkid, embedded_chunk, metadata_chunk) #(i,emb, metadata)
         source_chunks.append(newdoc)

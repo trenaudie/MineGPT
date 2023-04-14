@@ -22,13 +22,13 @@ def testnot():
 
 def testupload(session: requests.Session, access_token :str):
 
-    url = "http://localhost:5000/upload"
-    with open('backend/testarticles/article15_2.txt', 'rb') as f:
+    url = "http://localhost:5000/upload2"
+    with open('backend/testarticles/agi_article.txt', 'rb') as f:
         files = {
             "document":  f,
         }
         #session_id =  session.cookies.get('session', None) not useful with jwt
-        data = {'file_id': 123456}
+        data = {'file_id': 'agi_article_id0'} #different for every file, even if same
         headers = {
             'Authorization': f'Bearer {access_token}'
         }
@@ -73,7 +73,7 @@ def login_for_tests(email: str, password: str):
     print("Login test")
     print("-------------")
     print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
+    print(f"Inside login for tests : response: {response.text}")
     response_json = response.json()
     status = response_json['status']
     if not status == 'authenticated':
